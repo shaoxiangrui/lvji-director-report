@@ -3,12 +3,12 @@ import unittest
 
 
 PROJECT_ROOT = Path("/Users/wenjiayan/PycharmProjects/驴迹AI")
-REPORT_HTML = PROJECT_ROOT / "lvji-director-report.html"
+REPORT_HTML = PROJECT_ROOT / "index.html"
 
 
 class LvjiDirectorReportHtmlTest(unittest.TestCase):
     def test_report_html_has_core_sections(self):
-        self.assertTrue(REPORT_HTML.exists(), "lvji-director-report.html should exist")
+        self.assertTrue(REPORT_HTML.exists(), "index.html should exist")
 
         text = REPORT_HTML.read_text(encoding="utf-8")
 

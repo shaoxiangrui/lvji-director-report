@@ -3,12 +3,12 @@ import unittest
 
 
 PROJECT_ROOT = Path("/Users/wenjiayan/PycharmProjects/驴迹AI")
-INDEX_HTML = PROJECT_ROOT / "index.html"
+INDEX_HTML = PROJECT_ROOT / "index_test.html"
 
 
 class ReportHtmlStructureTest(unittest.TestCase):
     def test_index_html_has_required_sections(self):
-        self.assertTrue(INDEX_HTML.exists(), "index.html should exist")
+        self.assertTrue(INDEX_HTML.exists(), "index_test.html should exist")
 
         text = INDEX_HTML.read_text(encoding="utf-8")
 

@@ -144,7 +144,7 @@ Expected:
 Run:
 
 ```bash
-git diff -- docs/plans/2026-03-08-lvji-positioning-analysis-focus-layer-design.md docs/plans/2026-03-08-lvji-positioning-analysis-focus-layer.md tests/test_lvji_director_report_html.py lvji-director-report.html
+git diff -- docs/plans/2026-03-08-lvji-positioning-analysis-focus-layer-design.md docs/plans/2026-03-08-lvji-positioning-analysis-focus-layer.md tests/test_lvji_director_report_html.py index.html
 ```
 
 Expected:

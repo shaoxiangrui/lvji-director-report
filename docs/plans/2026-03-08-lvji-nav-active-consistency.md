@@ -21,7 +21,7 @@
 Run:
 
 ```bash
-rg -n 'data-nav-target="execution".*is-active|execution"].is-active .nav-index|execution"].is-active .priority-pill' lvji-director-report.html
+rg -n 'data-nav-target="execution".*is-active|execution"].is-active .nav-index|execution"].is-active .priority-pill' index.html
 ```
 
 Expected:
@@ -49,7 +49,7 @@ Keep the shared rule:
 Run:
 
 ```bash
-rg -n 'data-nav-target="execution".*is-active|execution"].is-active .nav-index|execution"].is-active .priority-pill' lvji-director-report.html
+rg -n 'data-nav-target="execution".*is-active|execution"].is-active .nav-index|execution"].is-active .priority-pill' index.html
 ```
 
 Expected:
@@ -60,7 +60,7 @@ Expected:
 Run:
 
 ```bash
-rg -n '\.atlas-link:hover|\.atlas-link\.is-active' lvji-director-report.html
+rg -n '\.atlas-link:hover|\.atlas-link\.is-active' index.html
 ```
 
 Expected:
@@ -71,7 +71,7 @@ Expected:
 Run:
 
 ```bash
-git diff -- docs/plans/2026-03-08-lvji-nav-active-consistency-design.md docs/plans/2026-03-08-lvji-nav-active-consistency.md lvji-director-report.html
+git diff -- docs/plans/2026-03-08-lvji-nav-active-consistency-design.md docs/plans/2026-03-08-lvji-nav-active-consistency.md index.html
 ```
 
 Expected:

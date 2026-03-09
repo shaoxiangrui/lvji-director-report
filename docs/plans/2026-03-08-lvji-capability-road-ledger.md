@@ -105,7 +105,7 @@ Expected: PASS on the moved-story and removed-OST assertions, while still failin
 **Step 5: Commit**
 
 ```bash
-git add /Users/wenjiayan/PycharmProjects/驴迹AI/lvji-director-report.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
+git add /Users/wenjiayan/PycharmProjects/驴迹AI/index.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
 git commit -m "refactor: move user stories into scenarios section"
 ```
 
@@ -149,7 +149,7 @@ Expected: PASS on removal checks, while still failing on the missing capability 
 **Step 5: Commit**
 
 ```bash
-git add /Users/wenjiayan/PycharmProjects/驴迹AI/lvji-director-report.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
+git add /Users/wenjiayan/PycharmProjects/驴迹AI/index.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
 git commit -m "refactor: remove old execution map and priority blocks"
 ```
 
@@ -219,7 +219,7 @@ Expected: PASS on style marker checks, while still failing on missing row conten
 **Step 5: Commit**
 
 ```bash
-git add /Users/wenjiayan/PycharmProjects/驴迹AI/lvji-director-report.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
+git add /Users/wenjiayan/PycharmProjects/驴迹AI/index.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
 git commit -m "style: add capability road ledger system"
 ```
 
@@ -310,7 +310,7 @@ Expected: PASS
 **Step 5: Commit**
 
 ```bash
-git add /Users/wenjiayan/PycharmProjects/驴迹AI/lvji-director-report.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
+git add /Users/wenjiayan/PycharmProjects/驴迹AI/index.html /Users/wenjiayan/PycharmProjects/驴迹AI/tests/test_lvji_director_report_html.py
 git commit -m "feat: add capability road ledger to execution section"
 ```
 
