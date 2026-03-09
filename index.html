@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>驴迹产品总监汇报 | Boardroom Atlas</title>
+  <title>驴迹集团AI数字企业分析-邵向睿</title>
   <style>
     :root {
       --paper: #f6f0e5;
@@ -595,43 +595,37 @@
     .strategy-analysis-button,
     .strategy-analysis-close {
       appearance: none;
+      border: 0;
       font: inherit;
       cursor: pointer;
+      text-align: left;
     }
 
     .strategy-analysis-button {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 11px 18px;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 188px;
+      padding: 12px 14px 12px 16px;
       border: 1px solid rgba(31, 124, 103, 0.18);
-      border-radius: 999px;
+      border-radius: 22px;
       color: var(--ink);
       background:
-        linear-gradient(135deg, rgba(31, 124, 103, 0.18), rgba(255, 250, 243, 0.92));
-      box-shadow: 0 12px 24px rgba(44, 44, 31, 0.08);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .strategy-analysis-button::before {
-      content: "Focus";
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255, 252, 247, 0.78);
-      color: var(--accent);
-      font-size: 0.74rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+        linear-gradient(145deg, rgba(31, 124, 103, 0.24), rgba(255, 251, 244, 0.96) 52%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(248, 240, 228, 0.88));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        0 14px 28px rgba(44, 44, 31, 0.1);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
     .strategy-analysis-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 28px rgba(44, 44, 31, 0.1);
-      border-color: rgba(31, 124, 103, 0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.56),
+        0 18px 32px rgba(44, 44, 31, 0.14);
+      border-color: rgba(31, 124, 103, 0.32);
     }
 
     .strategy-analysis-button:focus-visible,
@@ -641,6 +635,53 @@
         0 0 0 3px rgba(255, 252, 247, 0.92),
         0 0 0 6px rgba(31, 124, 103, 0.2),
         0 16px 28px rgba(44, 44, 31, 0.12);
+    }
+
+    .analysis-action-copy {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+    }
+
+    .analysis-action-eyebrow {
+      color: var(--accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .analysis-action-label {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.16;
+    }
+
+    .analysis-action-hint {
+      color: var(--ink-faint);
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    .analysis-action-icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      border: 1px solid rgba(24, 37, 33, 0.1);
+      background: rgba(255, 252, 247, 0.82);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      color: var(--ink);
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .analysis-action-icon--forward {
+      color: var(--accent);
     }
 
     html.modal-open,
@@ -781,35 +822,41 @@
     .strategy-analysis-close {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
+      gap: 12px;
+      padding: 10px 15px 10px 10px;
       border: 1px solid rgba(24, 37, 33, 0.08);
-      border-radius: 999px;
+      border-radius: 22px;
       color: var(--ink);
-      background: rgba(255, 252, 248, 0.78);
-      box-shadow: 0 10px 18px rgba(44, 44, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 249, 0.94), rgba(246, 239, 228, 0.92));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.54),
+        0 10px 18px rgba(44, 44, 31, 0.08);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    .strategy-analysis-close::before {
-      content: "Exit";
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(185, 120, 46, 0.12);
+    .strategy-analysis-close .analysis-action-eyebrow {
       color: var(--signal);
-      font-size: 0.74rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .strategy-analysis-close .analysis-action-icon {
+      color: var(--signal);
     }
 
     .strategy-analysis-close:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 22px rgba(44, 44, 31, 0.1);
-      border-color: rgba(185, 120, 46, 0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.58),
+        0 14px 22px rgba(44, 44, 31, 0.12);
+      border-color: rgba(185, 120, 46, 0.22);
+    }
+
+    .strategy-analysis-button:hover .analysis-action-icon {
+      transform: translateX(1px);
+    }
+
+    .strategy-analysis-close:hover .analysis-action-icon {
+      transform: translateX(-1px);
     }
 
     .strategy-analysis-scroll {
@@ -2052,6 +2099,31 @@
         line-height: 1.56;
       }
 
+      .chapter-head {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .chapter-priority {
+        justify-items: start;
+      }
+
+      .chapter-action-row {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .strategy-analysis-button {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
       .atlas-shell {
         width: min(calc(100% - 20px), 100%);
         padding: 14px 0 calc(112px + env(safe-area-inset-bottom, 0px));
@@ -2241,6 +2313,19 @@
 
       .hero-title {
         font-size: clamp(2.4rem, 11vw, 3.6rem);
+      }
+
+      #overview .hero-copy {
+        padding-inline-end: 10px;
+      }
+
+      #overview .hero-title {
+        max-width: 7.1ch;
+      }
+
+      #overview .hero-definition,
+      #overview .metrics-grid {
+        margin-inline-end: 2px;
       }
 
       .hero-map {
@@ -2462,7 +2547,11 @@
           <div class="chapter-priority">
             <div class="chapter-action-row">
               <button class="strategy-analysis-button" type="button" data-modal-open aria-haspopup="dialog" aria-controls="strategy-analysis-modal">
-                定位分析
+                <span class="analysis-action-copy">
+                  <span class="analysis-action-eyebrow">点击查看</span>
+                  <span class="analysis-action-label">定位分析</span>
+                </span>
+                <span class="analysis-action-icon analysis-action-icon--forward" aria-hidden="true">↗</span>
               </button>
               <span class="priority-chip">P0</span>
             </div>
@@ -3205,7 +3294,11 @@
           <p id="strategy-analysis-intro"></p>
         </div>
         <button class="strategy-analysis-close" type="button" data-modal-close>
-          返回报告
+          <span class="analysis-action-icon" aria-hidden="true">←</span>
+          <span class="analysis-action-copy">
+            <span class="analysis-action-eyebrow">返回报告</span>
+            <span class="analysis-action-hint">关闭定位分析</span>
+          </span>
         </button>
       </header>
 
@@ -3365,7 +3458,7 @@
           <span class="analysis-footer-kicker">Conclusion</span>
           <p>前期不做通用办公助手理由：先把 AI 中枢和数字员工做成，再把通用助手接入同一底座，整体价值会更高。</p>
         </div>
-        <span class="analysis-footer-pill">今年是排序，不是排除</span>
+        <span class="analysis-footer-pill">优先级较低</span>
       </footer>
     </section>
   </div>
@@ -3383,9 +3476,15 @@
     const strategyAnalysisClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
     const strategyAnalysisOverlay = document.querySelector("[data-modal-overlay]");
     const strategyAnalysisScroll = strategyAnalysisModal?.querySelector("[data-modal-scroll]");
+    const NAV_INTENT_HOLD_MS = 1400;
     let lastStrategyAnalysisTrigger = null;
+    let pendingNavTargetId = "";
+    let pendingNavTimeoutId = 0;
 
     const isMobileNavViewport = () => mobileNavMediaQuery.matches;
+    const getHashTargetId = () => decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    const isKnownNavTarget = (id) => navLinks.some((link) => link.dataset.navTarget === id);
+    const getSectionById = (id) => sections.find((section) => section.id === id);
 
     const setMobileNavOpen = (isOpen) => {
       if (!atlasNav || !mobileNavToggle) {
@@ -3408,6 +3507,31 @@
       mobileNavCurrent.textContent = [index, label].filter(Boolean).join(" ");
     };
 
+    const clearPendingNavTarget = () => {
+      if (pendingNavTimeoutId) {
+        window.clearTimeout(pendingNavTimeoutId);
+      }
+
+      pendingNavTargetId = "";
+      pendingNavTimeoutId = 0;
+    };
+
+    const armPendingNavTarget = (id) => {
+      if (!isKnownNavTarget(id)) {
+        return;
+      }
+
+      pendingNavTargetId = id;
+      if (pendingNavTimeoutId) {
+        window.clearTimeout(pendingNavTimeoutId);
+      }
+
+      pendingNavTimeoutId = window.setTimeout(() => {
+        clearPendingNavTarget();
+        syncActiveLinkWithViewport();
+      }, NAV_INTENT_HOLD_MS);
+    };
+
     const setActiveLink = (id) => {
       navLinks.forEach((link) => {
         const isActive = link.dataset.navTarget === id;
@@ -3423,6 +3547,28 @@
 
     const syncActiveLinkWithViewport = () => {
       const focusLine = Math.max(96, window.innerHeight * 0.22);
+
+      if (pendingNavTargetId) {
+        const pendingSection = getSectionById(pendingNavTargetId);
+
+        if (pendingSection) {
+          const pendingRect = pendingSection.getBoundingClientRect();
+          const pendingSectionSettled = pendingRect.top <= focusLine + 24 && pendingRect.bottom >= focusLine - 24;
+
+          if (pendingSectionSettled) {
+            const settledTargetId = pendingNavTargetId;
+            clearPendingNavTarget();
+            setActiveLink(settledTargetId);
+            return;
+          }
+
+          setActiveLink(pendingNavTargetId);
+          return;
+        }
+
+        clearPendingNavTarget();
+      }
+
       const candidate = sections
         .map((section) => {
           const rect = section.getBoundingClientRect();
@@ -3588,6 +3734,7 @@
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
+        armPendingNavTarget(link.dataset.navTarget);
         setActiveLink(link.dataset.navTarget);
         if (isMobileNavViewport()) {
           setMobileNavOpen(false);
@@ -3596,7 +3743,14 @@
       });
     });
 
-    window.addEventListener("hashchange", syncActiveLinkWithViewport);
+    window.addEventListener("hashchange", () => {
+      const hashTargetId = getHashTargetId();
+      if (isKnownNavTarget(hashTargetId)) {
+        armPendingNavTarget(hashTargetId);
+      }
+
+      syncActiveLinkWithViewport();
+    });
     window.addEventListener("resize", () => {
       syncActiveLinkWithViewport();
       if (!isMobileNavViewport()) {
@@ -3648,6 +3802,10 @@
 
     sections.forEach((section) => sectionObserver.observe(section));
     if (sections.length > 0) {
+      const initialHashTargetId = getHashTargetId();
+      if (isKnownNavTarget(initialHashTargetId)) {
+        armPendingNavTarget(initialHashTargetId);
+      }
       syncActiveLinkWithViewport();
     }
   </script>
