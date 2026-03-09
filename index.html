@@ -153,6 +153,74 @@
       margin-bottom: 18px;
     }
 
+    .atlas-nav-mobile-bar {
+      display: none;
+    }
+
+    .atlas-nav-mobile-copy {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .atlas-nav-mobile-eyebrow {
+      color: var(--ink-faint);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .atlas-nav-mobile-current {
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .atlas-nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 48px;
+      min-height: 48px;
+      padding: 0 14px;
+      border: 1px solid rgba(24, 37, 33, 0.12);
+      border-radius: 16px;
+      color: var(--ink);
+      background: rgba(255, 252, 247, 0.9);
+      box-shadow: 0 10px 24px rgba(44, 44, 31, 0.08);
+      font: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .atlas-nav-toggle:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 252, 247, 0.98);
+    }
+
+    .atlas-nav-toggle:focus-visible {
+      outline: 2px solid rgba(31, 124, 103, 0.65);
+      outline-offset: 2px;
+    }
+
+    .atlas-nav-toggle-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .atlas-nav-toggle-icon {
+      width: 11px;
+      height: 11px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-1px) rotate(45deg);
+      transition: transform 180ms ease;
+    }
+
     .nav-title {
       font-size: 1.28rem;
       line-height: 1.2;
@@ -1986,13 +2054,97 @@
 
       .atlas-shell {
         width: min(calc(100% - 20px), 100%);
-        padding: 14px 0 48px;
+        padding: 14px 0 calc(112px + env(safe-area-inset-bottom, 0px));
         gap: 18px;
       }
 
-      .atlas-nav,
       .panel {
         padding: 18px;
+      }
+
+      .atlas-nav {
+        position: fixed;
+        top: auto;
+        right: max(10px, env(safe-area-inset-right, 0px));
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        left: auto;
+        z-index: 30;
+        inline-size: min(68vw, 272px);
+        max-inline-size: calc(100vw - 20px);
+        padding: 12px;
+        border-radius: 24px;
+        background: rgba(255, 250, 243, 0.92);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 22px 44px rgba(37, 36, 24, 0.18);
+      }
+
+      .atlas-nav::before {
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.46), transparent 38%),
+          radial-gradient(circle at top right, rgba(31, 124, 103, 0.1), transparent 30%);
+      }
+
+      .atlas-nav-head {
+        gap: 10px;
+        margin-bottom: 0;
+      }
+
+      .atlas-nav-mobile-bar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .atlas-nav:not(.is-open) .atlas-nav-head > :not(.atlas-nav-mobile-bar) {
+        display: none;
+      }
+
+      .atlas-nav:not(.is-open) .atlas-list {
+        display: none;
+      }
+
+      .atlas-nav.is-open {
+        inline-size: min(82vw, 320px);
+        padding: 14px;
+      }
+
+      .atlas-nav.is-open .atlas-nav-toggle-icon {
+        transform: translateY(1px) rotate(-135deg);
+      }
+
+      .atlas-nav.is-open .atlas-nav-head {
+        margin-bottom: 12px;
+      }
+
+      .atlas-nav.is-open .atlas-list {
+        display: grid;
+        gap: 8px;
+        max-height: min(48dvh, 320px);
+        overflow: auto;
+        padding-right: 2px;
+      }
+
+      .atlas-nav.is-open .atlas-route-mini {
+        height: 64px;
+      }
+
+      .nav-label {
+        width: fit-content;
+      }
+
+      .nav-title {
+        font-size: 1.08rem;
+      }
+
+      .nav-copy {
+        font-size: 0.86rem;
+      }
+
+      .atlas-link {
+        min-height: 52px;
+        flex-direction: row;
+        align-items: center;
       }
 
       .strategy-analysis-modal {
@@ -2028,7 +2180,6 @@
         grid-template-columns: 1fr;
       }
 
-      .atlas-list,
       .metrics-grid,
       .problem-grid,
       .solution-grid,
@@ -2045,6 +2196,10 @@
       .boundary-grid,
       .roadmap-rail,
       .epic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .atlas-list {
         grid-template-columns: 1fr;
       }
 
@@ -2141,6 +2296,23 @@
   <div class="atlas-shell">
     <aside class="atlas-nav" aria-label="章节导航">
       <div class="atlas-nav-head">
+        <div class="atlas-nav-mobile-bar">
+          <div class="atlas-nav-mobile-copy">
+            <span class="atlas-nav-mobile-eyebrow">Boardroom Atlas</span>
+            <span class="atlas-nav-mobile-current" data-mobile-nav-current>00 概览</span>
+          </div>
+          <button
+            class="atlas-nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="atlas-nav-list"
+            aria-label="展开章节导航"
+            data-mobile-nav-toggle
+          >
+            <span class="atlas-nav-toggle-label">目录</span>
+            <span class="atlas-nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <span class="nav-label">Boardroom Atlas</span>
         <h2 class="nav-title">邵向睿</h2>
         <p class="nav-copy">基于官网、港股公告、APP等信息对驴迹集团AI赋能的方向思考。</p>
@@ -2153,39 +2325,39 @@
           </svg>
         </div>
       </div>
-      <ul class="atlas-list">
+      <ul class="atlas-list" id="atlas-nav-list">
         <li>
-          <a class="atlas-link" href="#overview" data-nav-target="overview">
+          <a class="atlas-link" href="#overview" data-nav-target="overview" data-nav-index="00" data-nav-label="概览">
             <span><span class="nav-index">00</span> 概览</span>
             <span class="priority-pill">Overview</span>
           </a>
         </li>
         <li>
-          <a class="atlas-link" href="#strategy" data-nav-target="strategy">
+          <a class="atlas-link" href="#strategy" data-nav-target="strategy" data-nav-index="01" data-nav-label="战略定位">
             <span><span class="nav-index">01</span> 战略定位</span>
             <span class="priority-pill">P0</span>
           </a>
         </li>
         <li>
-          <a class="atlas-link" href="#scenarios" data-nav-target="scenarios">
+          <a class="atlas-link" href="#scenarios" data-nav-target="scenarios" data-nav-index="02" data-nav-label="关键场景">
             <span><span class="nav-index">02</span> 关键场景</span>
             <span class="priority-pill">P0</span>
           </a>
         </li>
         <li>
-          <a class="atlas-link" href="#execution" data-nav-target="execution">
+          <a class="atlas-link" href="#execution" data-nav-target="execution" data-nav-index="03" data-nav-label="执行计划">
             <span><span class="nav-index">03</span> 执行计划</span>
             <span class="priority-pill">P1</span>
           </a>
         </li>
         <li>
-          <a class="atlas-link" href="#evidence" data-nav-target="evidence">
+          <a class="atlas-link" href="#evidence" data-nav-target="evidence" data-nav-index="04" data-nav-label="ROI分析">
             <span><span class="nav-index">04</span> ROI分析</span>
             <span class="priority-pill">P2</span>
           </a>
         </li>
         <li>
-          <a class="atlas-link" href="#decision" data-nav-target="decision">
+          <a class="atlas-link" href="#decision" data-nav-target="decision" data-nav-index="05" data-nav-label="决策思考">
             <span><span class="nav-index">05</span> 决策思考</span>
             <span class="priority-pill">Think</span>
           </a>
@@ -3200,8 +3372,12 @@
 
   <script>
     const sections = Array.from(document.querySelectorAll("[data-section]"));
+    const atlasNav = document.querySelector(".atlas-nav");
     const navLinks = Array.from(document.querySelectorAll(".atlas-link"));
+    const mobileNavToggle = document.querySelector("[data-mobile-nav-toggle]");
+    const mobileNavCurrent = document.querySelector("[data-mobile-nav-current]");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileNavMediaQuery = window.matchMedia("(max-width: 760px)");
     const strategyAnalysisModal = document.querySelector("[data-modal]");
     const strategyAnalysisOpeners = Array.from(document.querySelectorAll("[data-modal-open]"));
     const strategyAnalysisClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
@@ -3209,12 +3385,36 @@
     const strategyAnalysisScroll = strategyAnalysisModal?.querySelector("[data-modal-scroll]");
     let lastStrategyAnalysisTrigger = null;
 
+    const isMobileNavViewport = () => mobileNavMediaQuery.matches;
+
+    const setMobileNavOpen = (isOpen) => {
+      if (!atlasNav || !mobileNavToggle) {
+        return;
+      }
+
+      const shouldOpen = isOpen && isMobileNavViewport();
+      atlasNav.classList.toggle("is-open", shouldOpen);
+      mobileNavToggle.setAttribute("aria-expanded", String(shouldOpen));
+      mobileNavToggle.setAttribute("aria-label", shouldOpen ? "收起章节导航" : "展开章节导航");
+    };
+
+    const updateMobileNavCurrent = (link) => {
+      if (!mobileNavCurrent || !link) {
+        return;
+      }
+
+      const index = link.dataset.navIndex?.trim();
+      const label = link.dataset.navLabel?.trim();
+      mobileNavCurrent.textContent = [index, label].filter(Boolean).join(" ");
+    };
+
     const setActiveLink = (id) => {
       navLinks.forEach((link) => {
         const isActive = link.dataset.navTarget === id;
         link.classList.toggle("is-active", isActive);
         if (isActive) {
           link.setAttribute("aria-current", "true");
+          updateMobileNavCurrent(link);
         } else {
           link.removeAttribute("aria-current");
         }
@@ -3389,12 +3589,55 @@
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         setActiveLink(link.dataset.navTarget);
+        if (isMobileNavViewport()) {
+          setMobileNavOpen(false);
+        }
         requestAnimationFrame(syncActiveLinkWithViewport);
       });
     });
 
     window.addEventListener("hashchange", syncActiveLinkWithViewport);
-    window.addEventListener("resize", syncActiveLinkWithViewport);
+    window.addEventListener("resize", () => {
+      syncActiveLinkWithViewport();
+      if (!isMobileNavViewport()) {
+        setMobileNavOpen(false);
+      }
+    });
+
+    mobileNavToggle?.addEventListener("click", () => {
+      setMobileNavOpen(!atlasNav?.classList.contains("is-open"));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!isMobileNavViewport() || !atlasNav?.classList.contains("is-open")) {
+        return;
+      }
+
+      if (!(event.target instanceof Node) || atlasNav.contains(event.target)) {
+        return;
+      }
+
+      setMobileNavOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && atlasNav?.classList.contains("is-open")) {
+        setMobileNavOpen(false);
+        mobileNavToggle?.focus();
+      }
+    });
+
+    mobileNavMediaQuery.addEventListener?.("change", (event) => {
+      if (!event.matches) {
+        setMobileNavOpen(false);
+      }
+    });
+
+    mobileNavMediaQuery.addListener?.((event) => {
+      if (!event.matches) {
+        setMobileNavOpen(false);
+      }
+    });
 
     const sectionObserver = new IntersectionObserver(() => {
       syncActiveLinkWithViewport();
