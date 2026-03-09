@@ -1,5 +1,0 @@
-# Publish only the report page and deployment config.
-/*
-!/.vercelignore
-!/lvji-director-report.html
-!/vercel.json
