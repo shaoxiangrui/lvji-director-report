@@ -1,0 +1,3412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>驴迹产品总监汇报 | Boardroom Atlas</title>
+  <style>
+    :root {
+      --paper: #f6f0e5;
+      --paper-strong: #efe4d0;
+      --paper-deep: #e6d5ba;
+      --ink: #182521;
+      --ink-soft: #475550;
+      --ink-faint: #6f7c76;
+      --accent: #1f7c67;
+      --accent-soft: rgba(31, 124, 103, 0.12);
+      --signal: #b9782e;
+      --signal-soft: rgba(185, 120, 46, 0.14);
+      --line: rgba(24, 37, 33, 0.12);
+      --line-strong: rgba(24, 37, 33, 0.22);
+      --surface: rgba(255, 252, 247, 0.82);
+      --surface-strong: rgba(252, 247, 239, 0.94);
+      --shadow: 0 22px 48px rgba(44, 44, 31, 0.12);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max-width: 1360px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(31, 124, 103, 0.18), transparent 26%),
+        radial-gradient(circle at 88% 14%, rgba(185, 120, 46, 0.16), transparent 22%),
+        linear-gradient(180deg, #fbf8f0 0%, #f5eee2 48%, #efe4d1 100%);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(24, 37, 33, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 37, 33, 0.045) 1px, transparent 1px);
+      background-size: 88px 88px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 92%);
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 62%, rgba(31, 124, 103, 0.08), transparent 18%),
+        radial-gradient(circle at 72% 78%, rgba(185, 120, 46, 0.08), transparent 20%);
+      opacity: 0.9;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    p,
+    ul,
+    ol {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    .atlas-shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 48px), var(--max-width));
+      margin: 0 auto;
+      padding: 28px 0 96px;
+      display: grid;
+      grid-template-columns: 268px minmax(0, 1fr);
+      gap: 28px;
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .atlas-nav {
+      position: sticky;
+      top: 22px;
+      align-self: start;
+      padding: 22px 18px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 251, 245, 0.84);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .atlas-nav::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.42), transparent 36%),
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.08), transparent 28%);
+      pointer-events: none;
+    }
+
+    .nav-label,
+    .meta-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(31, 124, 103, 0.1);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .atlas-nav-head {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .nav-title {
+      font-size: 1.28rem;
+      line-height: 1.2;
+    }
+
+    .nav-copy {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .atlas-route-mini {
+      position: relative;
+      height: 84px;
+      border-radius: 18px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        radial-gradient(circle at 18% 28%, rgba(31, 124, 103, 0.16), transparent 24%),
+        radial-gradient(circle at 82% 74%, rgba(185, 120, 46, 0.18), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(247, 240, 228, 0.74));
+      overflow: hidden;
+    }
+
+    .atlas-route-mini svg,
+    .hero-map svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .route-path {
+      animation: routeFlow 18s linear infinite;
+    }
+
+    .atlas-list {
+      position: relative;
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .atlas-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      color: var(--ink-soft);
+      transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+    }
+
+    .atlas-link:hover,
+    .atlas-link.is-active {
+      color: var(--ink);
+      background: rgba(31, 124, 103, 0.12);
+      transform: translateX(4px);
+    }
+
+    .nav-index {
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+    }
+
+    .priority-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      background: var(--signal-soft);
+      color: var(--signal);
+      white-space: nowrap;
+    }
+
+    .atlas-main {
+      display: grid;
+      gap: 26px;
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 32%),
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.06), transparent 24%);
+      pointer-events: none;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 720ms ease, transform 720ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-panel {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(360px, 0.9fr);
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .hero-title {
+      font-size: clamp(3.1rem, 6vw, 5.8rem);
+      line-height: 0.94;
+      max-width: 10.2ch;
+    }
+
+    .hero-summary {
+      max-width: 56ch;
+      color: var(--ink-soft);
+      font-size: 1.04rem;
+    }
+
+    .hero-definition {
+      padding: 14px 18px;
+      border-left: 4px solid var(--accent);
+      background: rgba(255, 255, 255, 0.56);
+      font-weight: 600;
+    }
+
+    .metrics-grid,
+    .signal-grid,
+    .epic-grid,
+    .stories-grid,
+    .market-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 6px;
+    }
+
+    .metric-card,
+    .story-card,
+    .signal-card,
+    .epic-card,
+    .market-card,
+    .compact-card {
+      position: relative;
+      padding: 18px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 250, 0.74);
+      box-shadow: 0 14px 36px rgba(44, 44, 31, 0.07);
+    }
+
+    .metric-number {
+      font-size: 1.75rem;
+      line-height: 1;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      color: var(--accent);
+    }
+
+    .metric-title {
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .metric-note {
+      margin-top: 8px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      align-content: stretch;
+    }
+
+    .hero-map {
+      position: relative;
+      min-height: 340px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(24, 37, 33, 0.1);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(31, 124, 103, 0.2), transparent 22%),
+        radial-gradient(circle at 78% 18%, rgba(185, 120, 46, 0.18), transparent 18%),
+        radial-gradient(circle at 72% 82%, rgba(31, 124, 103, 0.12), transparent 22%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(244, 236, 222, 0.82));
+      overflow: hidden;
+    }
+
+    .hero-map::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .hero-map-labels {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-node {
+      position: absolute;
+      display: grid;
+      gap: 4px;
+      width: 128px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 251, 246, 0.84);
+      box-shadow: 0 14px 28px rgba(44, 44, 31, 0.08);
+    }
+
+    .hero-node small,
+    .eyebrow-small {
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+    }
+
+    .hero-node strong {
+      font-size: 0.95rem;
+    }
+
+    .node-foundation {
+      top: 34px;
+      left: 28px;
+    }
+
+    .node-scenarios {
+      top: 132px;
+      left: 148px;
+    }
+
+    .node-revenue {
+      top: 248px;
+      left: 72px;
+    }
+
+    .node-ops {
+      top: 92px;
+      right: 30px;
+    }
+
+    .hero-decision {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 250, 244, 0.8);
+    }
+
+    .decision-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+    }
+
+    .decision-list li::marker {
+      color: var(--signal);
+      font-weight: 700;
+    }
+
+    .chapter-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .chapter-head.is-selected {
+      position: relative;
+      padding: 20px 22px;
+      border-radius: 26px;
+      border: 1px solid rgba(185, 120, 46, 0.18);
+      background:
+        radial-gradient(circle at top right, rgba(185, 120, 46, 0.12), transparent 24%),
+        linear-gradient(135deg, rgba(255, 252, 247, 0.94), rgba(244, 236, 222, 0.84));
+      box-shadow: 0 18px 34px rgba(44, 44, 31, 0.08);
+    }
+
+    .chapter-head.is-selected::after {
+      content: "Current Focus";
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--signal);
+      background: rgba(255, 250, 243, 0.86);
+      border: 1px solid rgba(185, 120, 46, 0.18);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .chapter-head.is-selected .chapter-priority {
+      padding-top: 32px;
+    }
+
+    .chapter-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chapter-title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .chapter-summary {
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+
+    .chapter-priority {
+      display: grid;
+      justify-items: end;
+      gap: 8px;
+    }
+
+    .priority-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.8rem;
+      color: var(--signal);
+      background: var(--signal-soft);
+    }
+
+    .chapter-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .strategy-analysis-button,
+    .strategy-analysis-close {
+      appearance: none;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .strategy-analysis-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      border: 1px solid rgba(31, 124, 103, 0.18);
+      border-radius: 999px;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(31, 124, 103, 0.18), rgba(255, 250, 243, 0.92));
+      box-shadow: 0 12px 24px rgba(44, 44, 31, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .strategy-analysis-button::before {
+      content: "Focus";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.78);
+      color: var(--accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .strategy-analysis-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(44, 44, 31, 0.1);
+      border-color: rgba(31, 124, 103, 0.28);
+    }
+
+    .strategy-analysis-button:focus-visible,
+    .strategy-analysis-close:focus-visible {
+      outline: none;
+      box-shadow:
+        0 0 0 3px rgba(255, 252, 247, 0.92),
+        0 0 0 6px rgba(31, 124, 103, 0.2),
+        0 16px 28px rgba(44, 44, 31, 0.12);
+    }
+
+    html.modal-open,
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .strategy-analysis-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: grid;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 240ms ease, visibility 240ms ease;
+    }
+
+    .strategy-analysis-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .strategy-analysis-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(31, 124, 103, 0.18), transparent 28%),
+        radial-gradient(circle at 86% 16%, rgba(185, 120, 46, 0.16), transparent 24%),
+        linear-gradient(180deg, rgba(20, 29, 26, 0.56), rgba(20, 29, 26, 0.78));
+      backdrop-filter: blur(18px) saturate(0.84);
+    }
+
+    .strategy-analysis-dialog {
+      position: relative;
+      width: min(1240px, calc(100vw - 48px));
+      max-height: calc(100dvh - 48px);
+      min-height: 0;
+      margin: auto;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.12), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(185, 120, 46, 0.1), transparent 24%),
+        linear-gradient(180deg, rgba(253, 250, 245, 0.96), rgba(241, 232, 216, 0.94));
+      box-shadow: 0 34px 72px rgba(19, 26, 24, 0.28);
+      overflow: hidden;
+      transform: translateY(24px) scale(0.98);
+      transition: transform 260ms ease;
+    }
+
+    .strategy-analysis-dialog::before,
+    .strategy-analysis-dialog::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .strategy-analysis-dialog::before {
+      inset: 14px;
+      border: 1px solid rgba(24, 37, 33, 0.06);
+      border-radius: 28px;
+    }
+
+    .strategy-analysis-dialog::after {
+      inset: 0;
+      background:
+        linear-gradient(125deg, rgba(255, 255, 255, 0.26), transparent 34%),
+        repeating-linear-gradient(90deg, rgba(24, 37, 33, 0.018) 0 1px, transparent 1px 68px);
+      opacity: 0.62;
+    }
+
+    .strategy-analysis-modal.is-open .strategy-analysis-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .strategy-analysis-topbar,
+    .strategy-analysis-scroll,
+    .strategy-analysis-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .strategy-analysis-topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: start;
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid rgba(24, 37, 33, 0.08);
+      background: linear-gradient(180deg, rgba(255, 252, 247, 0.94), rgba(250, 243, 232, 0.86));
+    }
+
+    .strategy-analysis-copy {
+      display: grid;
+      gap: 14px;
+      max-width: 76ch;
+    }
+
+    .strategy-analysis-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .strategy-analysis-mode {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 247, 0.78);
+      color: var(--ink-faint);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .strategy-analysis-copy h3 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.06;
+      max-width: 16ch;
+    }
+
+    .strategy-analysis-copy p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      max-width: 72ch;
+    }
+
+    .strategy-analysis-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255, 252, 248, 0.78);
+      box-shadow: 0 10px 18px rgba(44, 44, 31, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .strategy-analysis-close::before {
+      content: "Exit";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(185, 120, 46, 0.12);
+      color: var(--signal);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .strategy-analysis-close:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 22px rgba(44, 44, 31, 0.1);
+      border-color: rgba(185, 120, 46, 0.18);
+    }
+
+    .strategy-analysis-scroll {
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 24px 32px 28px;
+      display: grid;
+      gap: 18px;
+      overscroll-behavior: contain;
+    }
+
+    .analysis-summary-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.24fr) minmax(320px, 0.92fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .analysis-summary-board:empty {
+      display: none;
+    }
+
+    .analysis-hero-card,
+    .analysis-signal-card,
+    .analysis-focus-card {
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      box-shadow: 0 18px 28px rgba(44, 44, 31, 0.08);
+    }
+
+    .analysis-hero-card {
+      display: grid;
+      gap: 18px;
+      padding: 24px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(31, 124, 103, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(255, 253, 249, 0.94), rgba(248, 241, 230, 0.9));
+    }
+
+    .analysis-hero-card h4 {
+      font-size: 1.44rem;
+      line-height: 1.18;
+      max-width: 18ch;
+    }
+
+    .analysis-hero-card p,
+    .analysis-hero-card li,
+    .analysis-signal-card p,
+    .analysis-column p,
+    .analysis-footer-copy p {
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    .analysis-hero-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .analysis-hero-list li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .analysis-signal-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .analysis-signal-card {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(247, 239, 227, 0.86));
+    }
+
+    .analysis-signal-card strong,
+    .analysis-footer-kicker {
+      display: inline-flex;
+      width: fit-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(185, 120, 46, 0.12);
+      color: var(--signal);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .analysis-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .analysis-focus-card {
+      display: grid;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255, 253, 249, 0.94), rgba(246, 239, 228, 0.88));
+    }
+
+    .analysis-card-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .analysis-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .analysis-card-head h4 {
+      margin-top: 8px;
+      font-size: 1.18rem;
+      line-height: 1.16;
+    }
+
+    .analysis-label {
+      display: inline-flex;
+      width: fit-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(24, 37, 33, 0.06);
+      color: var(--ink-faint);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .analysis-card-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .analysis-column {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .analysis-column.preferred {
+      background: linear-gradient(180deg, rgba(239, 248, 244, 0.92), rgba(250, 252, 250, 0.88));
+      border-color: rgba(31, 124, 103, 0.18);
+    }
+
+    .analysis-column.alternative {
+      background: linear-gradient(180deg, rgba(255, 248, 241, 0.92), rgba(248, 241, 231, 0.88));
+      border-color: rgba(185, 120, 46, 0.18);
+    }
+
+    .analysis-column h5 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.3;
+      font-family: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+    }
+
+    .analysis-card-verdict {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(185, 120, 46, 0.2);
+      background:
+        linear-gradient(135deg, rgba(255, 252, 247, 0.96), rgba(247, 239, 225, 0.92));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56);
+    }
+
+    .analysis-card-verdict p {
+      color: var(--ink);
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .strategy-analysis-footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 32px 22px;
+      border-top: 1px solid rgba(24, 37, 33, 0.08);
+      background: linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(246, 238, 226, 0.96));
+    }
+
+    .analysis-footer-copy {
+      display: grid;
+      gap: 8px;
+    }
+
+    .analysis-footer-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      white-space: nowrap;
+    }
+
+    .problem-grid,
+    .boundary-grid,
+    .roles-grid,
+    .journey-grid,
+    .validation-grid,
+    .readiness-grid,
+    .do-not-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .problem-grid,
+    .roles-grid,
+    .signal-grid,
+    .readiness-grid,
+    .validation-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .boundary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .journey-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .signal-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .market-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .role-card,
+    .journey-card,
+    .validation-card,
+    .readiness-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.76);
+    }
+
+    .compact-card-title {
+      font-size: 1.04rem;
+      margin-bottom: 8px;
+    }
+
+    .compact-card-copy,
+    .role-card p,
+    .journey-card p,
+    .validation-card p,
+    .signal-card p,
+    .epic-card p,
+    .story-card p,
+    .market-card p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .strategy-spine {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
+    .positioning-card {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: linear-gradient(180deg, rgba(255, 252, 247, 0.86), rgba(245, 237, 224, 0.78));
+    }
+
+    .positioning-card p {
+      color: var(--ink-soft);
+    }
+
+    .solution-architecture {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 18px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.88), rgba(244, 236, 222, 0.82));
+    }
+
+    .solution-overview {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .solution-overview p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .solution-rail {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+      padding-left: 20px;
+    }
+
+    .solution-rail::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(31, 124, 103, 0.88), rgba(185, 120, 46, 0.84));
+      border-radius: 999px;
+    }
+
+    .rail-stop {
+      position: relative;
+      padding-left: 14px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .rail-stop::before {
+      content: "";
+      position: absolute;
+      left: -19px;
+      top: 0.52rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(31, 124, 103, 0.12);
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .solution-card {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.8);
+      box-shadow: 0 14px 30px rgba(44, 44, 31, 0.06);
+    }
+
+    .solution-card.foundation,
+    .solution-card.workflow {
+      background:
+        radial-gradient(circle at top left, rgba(31, 124, 103, 0.12), transparent 34%),
+        rgba(248, 244, 236, 0.88);
+    }
+
+    .solution-level {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .solution-card h4 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .solution-card p {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .solution-card p + p {
+      margin-top: 8px;
+    }
+
+    .architecture-spine {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .core-hub {
+      grid-column: 1 / -1;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(31, 124, 103, 0.18);
+      background:
+        radial-gradient(circle at top left, rgba(31, 124, 103, 0.16), transparent 36%),
+        rgba(247, 242, 233, 0.88);
+    }
+
+    .hub-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hub-title {
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .architecture-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.78);
+    }
+
+    .architecture-card h4,
+    .scenario-card h4,
+    .epic-card h4,
+    .market-card h4,
+    .signal-card h4 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    .architecture-card p,
+    .architecture-card ul {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .boundary-card {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.78);
+    }
+
+    .boundary-card ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      display: grid;
+      gap: 8px;
+    }
+
+    .boundary-card li::marker {
+      color: var(--accent);
+    }
+
+    .boundary-card.boundary-no li::marker,
+    .do-not-card li::marker {
+      color: var(--signal);
+    }
+
+    .capability-ledger {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 252, 247, 0.88), rgba(246, 239, 228, 0.8));
+    }
+
+    .ledger-head {
+      display: grid;
+      gap: 8px;
+    }
+
+    .ledger-head p {
+      color: var(--ink-soft);
+      max-width: 62ch;
+      font-size: 0.95rem;
+    }
+
+    .ledger-table {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .ledger-row.ledger-risk {
+      background: rgba(255, 249, 241, 0.72);
+      border-color: rgba(185, 120, 46, 0.18);
+    }
+
+    .ledger-tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .ledger-risk .ledger-tag {
+      background: rgba(185, 120, 46, 0.14);
+      color: var(--signal);
+    }
+
+    .ledger-copy {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .roadmap-rail {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      padding-top: 22px;
+    }
+
+    .roadmap-rail::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(31, 124, 103, 0.88), rgba(185, 120, 46, 0.86));
+    }
+
+    .roadmap-card {
+      padding: 20px 18px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 253, 250, 0.78);
+      position: relative;
+    }
+
+    .roadmap-card::before {
+      content: "";
+      position: absolute;
+      top: -13px;
+      left: 20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(31, 124, 103, 0.12);
+    }
+
+    .roadmap-time {
+      color: var(--signal);
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .roadmap-card h4 {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font-size: 1.12rem;
+    }
+
+    .roadmap-card p,
+    .roadmap-card ul {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .roadmap-card ul {
+      margin-top: 10px;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario-trio {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .scenario-card {
+      display: grid;
+      gap: 12px;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 249, 0.88), rgba(246, 239, 227, 0.82));
+    }
+
+    .scenario-flow {
+      display: grid;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .scenario-step {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(24, 37, 33, 0.08);
+    }
+
+    .scenario-step small {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .capability-road-ledger {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.08), transparent 32%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.88), rgba(245, 238, 227, 0.82));
+    }
+
+    .capability-road-table {
+      display: grid;
+      gap: 12px;
+    }
+
+    .capability-plan-row {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.84fr) minmax(0, 1.36fr);
+      gap: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 12px 30px rgba(44, 44, 31, 0.05);
+    }
+
+    .capability-plan-row[data-priority="P0"] {
+      border-color: rgba(31, 124, 103, 0.16);
+    }
+
+    .capability-plan-row[data-priority="P1"] {
+      border-color: rgba(185, 120, 46, 0.18);
+    }
+
+    .capability-plan-row[data-priority="P2"] {
+      border-color: rgba(24, 37, 33, 0.12);
+    }
+
+    .capability-plan-head {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      padding-right: 16px;
+      border-right: 1px solid rgba(24, 37, 33, 0.08);
+    }
+
+    .capability-plan-head .priority-chip {
+      width: fit-content;
+      justify-self: start;
+    }
+
+    .capability-plan-head h4 {
+      font-size: 1.12rem;
+      margin: 0;
+    }
+
+    .capability-plan-meta {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(31, 124, 103, 0.1);
+    }
+
+    .capability-plan-meta span {
+      color: var(--ink-faint);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .capability-plan-meta strong {
+      color: var(--signal);
+      font-size: 0.84rem;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .capability-plan-detail {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .capability-plan-block {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.72);
+    }
+
+    .capability-plan-block strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .capability-plan-block p {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .section-divider {
+      height: 1px;
+      margin: 18px 0;
+      background: linear-gradient(90deg, transparent, rgba(24, 37, 33, 0.18), transparent);
+    }
+
+    .journey-card {
+      position: relative;
+      min-height: 176px;
+    }
+
+    .journey-card::before {
+      content: attr(data-step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: rgba(31, 124, 103, 0.12);
+      color: var(--accent);
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.76rem;
+    }
+
+    .journey-card h4,
+    .role-card h4,
+    .validation-card h4,
+    .readiness-card h4 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .validation-card {
+      border-left: 4px solid var(--accent);
+    }
+
+    .readiness-bar {
+      margin-top: 12px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(24, 37, 33, 0.08);
+      overflow: hidden;
+    }
+
+    .readiness-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(31, 124, 103, 0.96), rgba(185, 120, 46, 0.92));
+    }
+
+    .epic-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .epic-kpi {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(24, 37, 33, 0.1);
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .stories-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .story-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+
+    .story-card p + p {
+      margin-top: 8px;
+    }
+
+    .signal-grid {
+      margin-bottom: 18px;
+    }
+
+    .signal-card {
+      min-height: 172px;
+    }
+
+    .signal-card strong,
+    .market-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--signal);
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .evidence-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .do-not-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .do-card,
+    .do-not-card {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.78);
+    }
+
+    .do-card ul,
+    .do-not-card ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      display: grid;
+      gap: 8px;
+    }
+
+    .do-card li::marker {
+      color: var(--accent);
+    }
+
+    .investment-assessment,
+    .deprioritized-board {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.9), rgba(245, 238, 227, 0.82));
+    }
+
+    .investment-table {
+      display: grid;
+      gap: 12px;
+    }
+
+    .investment-row {
+      display: grid;
+      grid-template-columns: minmax(210px, 0.72fr) minmax(0, 1.48fr);
+      gap: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 12px 28px rgba(44, 44, 31, 0.05);
+    }
+
+    .investment-capability {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      padding-right: 16px;
+      border-right: 1px solid rgba(24, 37, 33, 0.08);
+    }
+
+    .investment-capability h4 {
+      font-size: 1.12rem;
+    }
+
+    .investment-kicker {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(31, 124, 103, 0.12);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .investment-cells {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .investment-cell {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 252, 248, 0.76);
+    }
+
+    .investment-cell strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .investment-cell p {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .deprioritized-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .deprioritized-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(185, 120, 46, 0.18);
+      background:
+        linear-gradient(180deg, rgba(255, 249, 241, 0.88), rgba(249, 242, 231, 0.82));
+      box-shadow: 0 12px 24px rgba(44, 44, 31, 0.05);
+    }
+
+    .deprioritized-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--signal);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .deprioritized-card h4 {
+      margin-bottom: 8px;
+      font-size: 1.06rem;
+    }
+
+    .deprioritized-card p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .thinking-board {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(31, 124, 103, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.9), rgba(244, 236, 223, 0.84));
+    }
+
+    .thinking-intro {
+      color: var(--ink-soft);
+      max-width: 64ch;
+    }
+
+    .thinking-table {
+      display: grid;
+      gap: 12px;
+    }
+
+    .thinking-head,
+    .thinking-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.88fr) minmax(0, 1.22fr) minmax(0, 1.08fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .thinking-head {
+      padding: 0 8px;
+      color: var(--ink-faint);
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .thinking-row {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 37, 33, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 12px 28px rgba(44, 44, 31, 0.05);
+    }
+
+    .thinking-cell {
+      display: grid;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .thinking-cell strong {
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .thinking-kicker {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--signal);
+      background: rgba(185, 120, 46, 0.14);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    .fine-print {
+      color: var(--ink-faint);
+      font-size: 0.86rem;
+    }
+
+    @keyframes routeFlow {
+      from {
+        stroke-dashoffset: 0;
+      }
+      to {
+        stroke-dashoffset: -240;
+      }
+    }
+
+    @keyframes strategyCardRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .strategy-analysis-modal.is-open .analysis-hero-card,
+    .strategy-analysis-modal.is-open .analysis-signal-card,
+    .strategy-analysis-modal.is-open .analysis-focus-card {
+      animation: strategyCardRise 460ms ease both;
+    }
+
+    .strategy-analysis-modal.is-open .analysis-signal-card:nth-child(1),
+    .strategy-analysis-modal.is-open .analysis-focus-card:nth-child(1) {
+      animation-delay: 60ms;
+    }
+
+    .strategy-analysis-modal.is-open .analysis-signal-card:nth-child(2),
+    .strategy-analysis-modal.is-open .analysis-focus-card:nth-child(2) {
+      animation-delay: 100ms;
+    }
+
+    .strategy-analysis-modal.is-open .analysis-signal-card:nth-child(3),
+    .strategy-analysis-modal.is-open .analysis-focus-card:nth-child(3) {
+      animation-delay: 140ms;
+    }
+
+    @media (max-width: 1280px) {
+      .journey-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .signal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .epic-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .atlas-shell {
+        width: min(calc(100% - 28px), 100%);
+        grid-template-columns: 1fr;
+      }
+
+      .atlas-nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .atlas-route-mini {
+        height: 68px;
+      }
+
+      .atlas-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .atlas-link {
+        min-height: 64px;
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .hero-panel,
+      .strategy-spine,
+      .evidence-split {
+        grid-template-columns: 1fr;
+      }
+
+      .solution-architecture {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-grid,
+      .solution-grid,
+      .scenario-trio,
+      .roles-grid,
+      .validation-grid,
+      .stories-grid,
+      .deprioritized-grid,
+      .market-grid,
+      .do-not-grid,
+      .boundary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .strategy-analysis-topbar,
+      .analysis-summary-board,
+      .analysis-card-grid,
+      .analysis-card-columns,
+      .strategy-analysis-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .investment-row,
+      .investment-cells {
+        grid-template-columns: 1fr;
+      }
+
+      .thinking-head,
+      .thinking-row {
+        grid-template-columns: 1fr;
+      }
+
+      .thinking-head {
+        display: none;
+      }
+
+      .investment-capability {
+        padding-right: 0;
+        padding-bottom: 12px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(24, 37, 33, 0.08);
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        line-height: 1.56;
+      }
+
+      .atlas-shell {
+        width: min(calc(100% - 20px), 100%);
+        padding: 14px 0 48px;
+        gap: 18px;
+      }
+
+      .atlas-nav,
+      .panel {
+        padding: 18px;
+      }
+
+      .strategy-analysis-modal {
+        padding: 0;
+      }
+
+      .strategy-analysis-dialog {
+        width: 100vw;
+        max-height: 100dvh;
+        border-radius: 0;
+      }
+
+      .strategy-analysis-topbar {
+        padding: 22px 18px 18px;
+      }
+
+      .strategy-analysis-copy h3 {
+        max-width: none;
+      }
+
+      .strategy-analysis-scroll {
+        padding: 18px;
+      }
+
+      .strategy-analysis-footer {
+        padding: 16px 18px calc(16px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .analysis-summary-board,
+      .analysis-card-grid,
+      .analysis-card-columns,
+      .strategy-analysis-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .atlas-list,
+      .metrics-grid,
+      .problem-grid,
+      .solution-grid,
+      .scenario-trio,
+      .roles-grid,
+      .journey-grid,
+      .validation-grid,
+      .signal-grid,
+      .readiness-grid,
+      .stories-grid,
+      .deprioritized-grid,
+      .market-grid,
+      .do-not-grid,
+      .boundary-grid,
+      .roadmap-rail,
+      .epic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger-row {
+        grid-template-columns: 1fr;
+      }
+
+      .investment-row,
+      .investment-cells {
+        grid-template-columns: 1fr;
+      }
+
+      .thinking-board {
+        padding: 18px;
+      }
+
+      .thinking-row {
+        padding: 16px;
+      }
+
+      .investment-capability {
+        padding-right: 0;
+        padding-bottom: 12px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(24, 37, 33, 0.08);
+      }
+
+      .capability-plan-row,
+      .capability-plan-detail {
+        grid-template-columns: 1fr;
+      }
+
+      .capability-plan-head {
+        padding-right: 0;
+        padding-bottom: 12px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(24, 37, 33, 0.08);
+      }
+
+      .hero-title {
+        font-size: clamp(2.4rem, 11vw, 3.6rem);
+      }
+
+      .hero-map {
+        min-height: 300px;
+      }
+
+      .hero-node {
+        width: 116px;
+        padding: 10px 12px;
+      }
+
+      .node-foundation {
+        top: 22px;
+        left: 16px;
+      }
+
+      .node-scenarios {
+        top: 118px;
+        left: 122px;
+      }
+
+      .node-revenue {
+        top: 230px;
+        left: 26px;
+      }
+
+      .node-ops {
+        top: 46px;
+        right: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="atlas-shell">
+    <aside class="atlas-nav" aria-label="章节导航">
+      <div class="atlas-nav-head">
+        <span class="nav-label">Boardroom Atlas</span>
+        <h2 class="nav-title">邵向睿</h2>
+        <p class="nav-copy">基于官网、港股公告、APP等信息对驴迹集团AI赋能的方向思考。</p>
+        <div class="atlas-route-mini" aria-hidden="true">
+          <svg viewBox="0 0 280 84" xmlns="http://www.w3.org/2000/svg">
+            <path class="route-path" d="M18 55 C58 18, 98 18, 128 42 S198 78, 260 24" fill="none" stroke="rgba(31,124,103,0.78)" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8"/>
+            <circle cx="26" cy="50" r="5" fill="#1f7c67"/>
+            <circle cx="132" cy="41" r="5" fill="#b9782e"/>
+            <circle cx="258" cy="24" r="5" fill="#1f7c67"/>
+          </svg>
+        </div>
+      </div>
+      <ul class="atlas-list">
+        <li>
+          <a class="atlas-link" href="#overview" data-nav-target="overview">
+            <span><span class="nav-index">00</span> 概览</span>
+            <span class="priority-pill">Overview</span>
+          </a>
+        </li>
+        <li>
+          <a class="atlas-link" href="#strategy" data-nav-target="strategy">
+            <span><span class="nav-index">01</span> 战略定位</span>
+            <span class="priority-pill">P0</span>
+          </a>
+        </li>
+        <li>
+          <a class="atlas-link" href="#scenarios" data-nav-target="scenarios">
+            <span><span class="nav-index">02</span> 关键场景</span>
+            <span class="priority-pill">P0</span>
+          </a>
+        </li>
+        <li>
+          <a class="atlas-link" href="#execution" data-nav-target="execution">
+            <span><span class="nav-index">03</span> 执行计划</span>
+            <span class="priority-pill">P1</span>
+          </a>
+        </li>
+        <li>
+          <a class="atlas-link" href="#evidence" data-nav-target="evidence">
+            <span><span class="nav-index">04</span> ROI分析</span>
+            <span class="priority-pill">P2</span>
+          </a>
+        </li>
+        <li>
+          <a class="atlas-link" href="#decision" data-nav-target="decision">
+            <span><span class="nav-index">05</span> 决策思考</span>
+            <span class="priority-pill">Think</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="atlas-main">
+      <section class="panel hero-panel reveal" id="overview" data-section>
+        <div class="hero-copy">
+          <span class="meta-label">邵向睿  / 2026-03-09</span>
+          <h1 class="hero-title">驴迹科技集团企业AI赋能</h1>
+          <p class="hero-summary">
+
+          </p>
+          <p class="hero-definition">
+            <strong>产品定义：</strong> 以集团数据作为 AI 中枢，把项目内容、资产地图、业务数据和流程能力整理成可执行的数字员工能力，先服务内部团队，再服务景区与文旅局客户。
+          </p>
+
+          <div class="metrics-grid" aria-label="四个核心结论">
+            <article class="metric-card">
+              <div class="metric-number">01</div>
+              <h3 class="metric-title">战略层</h3>
+              <p class="metric-note">利用长期积累的文旅场景数据资产，重构工作方式，而不是只做单点自动化或聊天工具。</p>
+            </article>
+            <article class="metric-card">
+              <div class="metric-number">02</div>
+              <h3 class="metric-title">目标层</h3>
+              <p class="metric-note">不做底层模型能力，先把能力沉到共同底座，再按角色做可复用场景。</p>
+            </article>
+            <article class="metric-card">
+              <div class="metric-number">03</div>
+              <h3 class="metric-title">数据层</h3>
+              <p class="metric-note">做 AI 前必须先做主数据和口径治理，否则数字员工会放大数据不一致问题。</p>
+            </article>
+            <article class="metric-card">
+              <div class="metric-number">04</div>
+              <h3 class="metric-title">业务层</h3>
+              <p class="metric-note"> 先证明效率，不做纯概念，绑定现有产品与客户，不另开一条昂贵的新业务线。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="hero-map" aria-hidden="true">
+            <svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="atlasPath" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#1f7c67"/>
+                  <stop offset="100%" stop-color="#b9782e"/>
+                </linearGradient>
+              </defs>
+              <path class="route-path" d="M40 80 C110 30, 170 40, 214 118 S304 230, 388 128" fill="none" stroke="url(#atlasPath)" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
+              <path d="M56 238 C122 196, 182 216, 232 260 S338 312, 386 254" fill="none" stroke="rgba(24,37,33,0.16)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="48" cy="76" r="7" fill="#1f7c67"/>
+              <circle cx="214" cy="118" r="7" fill="#b9782e"/>
+              <circle cx="388" cy="128" r="7" fill="#1f7c67"/>
+              <circle cx="96" cy="232" r="7" fill="#b9782e"/>
+              <circle cx="386" cy="254" r="7" fill="#1f7c67"/>
+            </svg>
+            <div class="hero-map-labels">
+              <div class="hero-node node-foundation">
+                <small>Step 1</small>
+                <strong>数字交付员工</strong>
+              </div>
+              <div class="hero-node node-scenarios">
+                <small>Step 2</small>
+                <strong>数字导游员工</strong>
+              </div>
+              <div class="hero-node node-revenue">
+                <small>Step 0</small>
+                <strong>知识底座</strong>
+              </div>
+              <div class="hero-node node-ops">
+                <small>Step 3</small>
+                <strong>数字运营员工</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-decision">
+            <span class="eyebrow-small">调研信息</span>
+            <ol class="decision-list">
+              <li>驴迹官网首页：[https://www.lvji.cn/cn/index]</li>
+              <li>驴迹案例中心：[https://www.lvji.cn/cn/caseCenter/center]</li>
+              <li> HKEX ：[驴迹科技 2024 年业绩公告，日期 2025-03-28];[驴迹科技 2025 年中期报告，日期 2025-09-25];[驴迹科技 2025 年中期报告，日期 2025-09-25]</li>
+              <li>港股公告：驴迹科技业务更新公告，日期 2025-08-25</li>
+               <li>2024 年业绩公告推出融合 AI 大模型与 MR 技术的 Lvji Travel Tool；2025-09-25 中期报告推出 AI 导游助理数字人 数景通</li>
+              <li>移动商城：驴迹导游APP</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reveal" id="strategy" data-section>
+        <div class="chapter-head">
+          <div class="chapter-copy">
+            <span class="meta-label">Section 01</span>
+            <h2 class="chapter-title">P0 / 战略定位</h2>
+            <p class="chapter-summary">定义客户问题，明确解决方案架构、能力边界和 12 个月推进路径</p>
+          </div>
+          <div class="chapter-priority">
+            <div class="chapter-action-row">
+              <button class="strategy-analysis-button" type="button" data-modal-open aria-haspopup="dialog" aria-controls="strategy-analysis-modal">
+                定位分析
+              </button>
+              <span class="priority-chip">P0</span>
+            </div>
+            <p class="fine-print">思考：架构、边界、计划</p>
+          </div>
+        </div>
+
+        <div class="problem-grid">
+          <article class="compact-card">
+            <h3 class="compact-card-title">痛点1：景区外部因素</h3>
+            <p class="compact-card-copy">希望在有限预算、有限人力下，同时提升游客服务、营销转化和现场运营效率，但当前内容分散、系统割裂、数据迟滞，服务难以实时和个性化。</p>
+          </article>
+          <article class="compact-card">
+            <h3 class="compact-card-title">痛点2:公司内部因素</h3>
+            <p class="compact-card-copy">售前、交付、内容、客服和运营团队要处理越来越复杂的项目，但知识散落在历史项目、方案文档、导览内容和个人经验里，复用率低、响应慢、利润被项目型工作吞噬。</p>
+          </article>
+          <article class="compact-card">
+            <h3 class="compact-card-title">痛点思考</h3>
+            <p class="compact-card-copy">公司及其客户都在试图用<strong>有限的人力，服务更复杂、更多变、更多角色参与的文旅场景</strong>；但当前知识、地图、数据和流程是割裂的，导致服务不够实时、运营不够智能、交付不够标准化。</p>
+          </article>
+        </div>
+
+        <div class="strategy-spine">
+          <section class="solution-architecture" aria-label="解决方案架构">
+            <div class="solution-overview">
+              <span class="meta-label">解决方案架构</span>
+              <h3>驴迹 AI 中枢，不是单一功能，而是四层可治理、可审批、可接入的文旅 AI 工作平台。</h3>
+              <p>把知识底座、Agent 工作流、数字员工能力和既有产品入口串成统一系统。先沉底座和流程，再把能力包装成可复用模块。</p>
+              <div class="solution-rail" aria-hidden="true">
+                <div class="rail-stop">L1 底座</div>
+                <div class="rail-stop">L2 工作流</div>
+                <div class="rail-stop">L3 数字员工</div>
+                <div class="rail-stop">L4 产品接入</div>
+              </div>
+            </div>
+
+            <div class="solution-grid">
+              <article class="solution-card foundation">
+                <span class="solution-level">L1</span>
+                <h4>L1 文旅知识中枢</h4>
+                <p>文旅内容、地图、运营数据、项目 SOP、案例与权限治理。</p>
+                <p><strong>对应能力：</strong> 检索、引用、标签、审批、版本、租户隔离。</p>
+              </article>
+              <article class="solution-card workflow">
+                <span class="solution-level">L2</span>
+                <h4>L2 Agent 工作流层</h4>
+                <p>把问答、生成、审批、派单、回写串成流程。</p>
+                <p><strong>对应能力：</strong> 工作流编排、消息通知、人工审核、日志审计。</p>
+              </article>
+              <article class="solution-card">
+                <span class="solution-level">L3</span>
+                <h4>L3 数字员工层</h4>
+                <p>面向角色的可复用能力，连接内部提效与外部商业化。</p>
+                <p><strong>对应能力：</strong> 数字交付、数字导游、数字营销、数字运营。</p>
+              </article>
+              <article class="solution-card">
+                <span class="solution-level">L4</span>
+                <h4>L4 产品接入层</h4>
+                <p>驴迹既有产品和客户入口，是能力真正被调用和被看见的地方。</p>
+                <p><strong>对应能力：</strong> 电子导览、SaaS、APP、全域旅游、智慧景区、运营后台。</p>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <section class="capability-ledger" aria-label="能力边界">
+          <div class="ledger-head">
+            <span class="meta-label">能力边界</span>
+            <h3></h3>
+            <p>前五项是现阶段可交付能力，后两项是审批和承诺边界。</p>
+          </div>
+
+          <div class="ledger-table">
+            <div class="ledger-row">
+              <span class="ledger-tag">问答与检索</span>
+              <p class="ledger-copy">可以基于可信知识源回答景区、路线、票务、设施、SOP、项目案例等问题。</p>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-tag">文案与内容生成</span>
+              <p class="ledger-copy">可以生成讲解词、营销文案、方案初稿、培训材料、日报周报等。</p>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-tag">推荐与建议</span>
+              <p class="ledger-copy">可以给出路线、活动、营销、调度、工单分流等建议。</p>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-tag">预警与摘要</span>
+              <p class="ledger-copy">可以识别异常、自动摘要、自动分类、自动提炼重点。</p>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-tag">流程协同</span>
+              <p class="ledger-copy">可以触发审批、派单、回写、任务跟进等工作流。</p>
+            </div>
+            <div class="ledger-row ledger-risk">
+              <span class="ledger-tag">不能独立决策的场景</span>
+              <p class="ledger-copy">涉及票价、合同承诺、投诉定责、政府对外口径、安全事故处置、重大调度等，必须人工审批。</p>
+            </div>
+            <div class="ledger-row ledger-risk">
+              <span class="ledger-tag">不能承诺的能力</span>
+              <p class="ledger-copy">不能承诺“完全无人运营景区”；不能承诺“零幻觉”；不能承诺在高风险场景下替代人工决策。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="roadmap-rail" aria-label="12个月路线图">
+          <article class="roadmap-card">
+            <span class="roadmap-time">0-3 个月</span>
+            <h4>P0 / 建底座、先提效</h4>
+            <p>先修复人效和复用能力，建立治理规则。</p>
+            <ul>
+              <li>知识中枢 </li>
+              <li>数字交付员工 </li>
+              <li>治理规则与引用体系</li>
+            </ul>
+          </article>
+          <article class="roadmap-card">
+            <span class="roadmap-time">4-8 个月</span>
+            <h4>P1 / 做外部收入样板</h4>
+            <p>把可见价值做成试点，形成商业化模块。</p>
+            <ul>
+              <li>数字导游员工 </li>
+              <li>数字营销员工 </li>
+              <li>2-3 个 高频使用的客户</li>
+            </ul>
+          </article>
+          <article class="roadmap-card">
+            <span class="roadmap-time">9-12 个月</span>
+            <h4>P2 / 做经营智能闭环</h4>
+            <p>从系统提供商升级到运营智能伙伴。</p>
+            <ul>
+              <li>数字运营员工 </li>
+              <li>ROI 看板</li>
+              <li>分层商业化</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel reveal" id="scenarios" data-section>
+        <div class="chapter-head">
+          <div class="chapter-copy">
+            <span class="meta-label">Section 02</span>
+            <h2 class="chapter-title">P0 / 关键场景</h2>
+            <p class="chapter-summary">基于为什么选取数字交付/导游/运营/营销员工的场景思考。</p>
+          </div>
+          <div class="chapter-priority">
+            <span class="priority-chip">P0</span>
+            <p class="fine-print">思考：先落场景，再谈规模</p>
+          </div>
+        </div>
+
+        <div class="scenario-trio">
+          <article class="scenario-card">
+            <h3>场景 A：驴迹内部交付提效</h3>
+            <div class="scenario-flow">
+              <div class="scenario-step">
+                <small>变化前</small>
+                方案、PPT、培训材料和客户答疑大量靠人工拼接。
+              </div>
+              <div class="scenario-step">
+                <small>AI 介入</small>
+                数字交付员工自动匹配历史案例，生成方案初稿、FAQ 和培训包。
+              </div>
+              <div class="scenario-step">
+                <small>变化后</small>
+                响应更快，交付更稳，新人也能复用老经验。
+              </div>
+              <div class="scenario-step">
+                <small>企业价值</small>
+                先修复交付效率和毛利压力。
+              </div>
+            </div>
+          </article>
+
+          <article class="scenario-card">
+            <h3>场景 B：游客实时导览服务</h3>
+            <div class="scenario-flow">
+              <div class="scenario-step">
+                <small>变化前</small>
+                游客信息分散，路线不清，服务咨询挤压人工客服。
+              </div>
+              <div class="scenario-step">
+                <small>AI 介入</small>
+                数字导游员工提供问答、路线推荐、讲解、服务分流。
+              </div>
+              <div class="scenario-step">
+                <small>变化后</small>
+                游客少走弯路，客服只处理复杂问题。
+              </div>
+              <div class="scenario-step">
+                <small>企业价值</small>
+                做出对外最容易感知的 AI 能力。
+              </div>
+            </div>
+          </article>
+
+          <article class="scenario-card">
+            <h3>场景 C：景区运营与营销协同</h3>
+            <div class="scenario-flow">
+              <div class="scenario-step">
+                <small>变化前</small>
+                日报靠人工汇总，节假日营销和运营动作反应慢。
+              </div>
+              <div class="scenario-step">
+                <small>AI 介入</small>
+                数字营销员工生成内容，数字运营员工自动输出日报、预警和调度建议。
+              </div>
+              <div class="scenario-step">
+                <small>变化后</small>
+                景区运营团队把时间从“汇总数据”转到“做动作”。
+              </div>
+              <div class="scenario-step">
+                <small>企业价值</small>
+                把驴迹从系统提供商升级为运营智能伙伴。
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="stories-grid">
+          <article class="story-card">
+            <strong>用户画像：作为一名 驴迹交付经理</strong>
+            <p>我希望上传客户需求后，系统自动检索类似案例并生成方案初稿，</p>
+            <p>以便更快输出方案并减少重复劳动。</p>
+          </article>
+          <article class="story-card">
+            <strong>用户画像：作为一名 游客</strong>
+            <p>我希望在景区内直接提问并获得路线、讲解和服务指引，</p>
+            <p>以便少走弯路并更快解决问题。</p>
+          </article>
+          <article class="story-card">
+            <strong>用户画像：作为一名 景区内容运营</strong>
+            <p>我希望输入活动主题后自动生成多平台内容素材，</p>
+            <p>以便更快完成内容生产并适配不同渠道。</p>
+          </article>
+        </div>
+
+        <div class="roles-grid">
+          <article class="role-card">
+            <h4>驴迹交付经理</h4>
+            <p>最关心服务质量、节假日效率、领导可见成果。驴迹 AI 给到运营建议、日报预警、营销协同和 ROI 可视化。</p>
+          </article>
+          <article class="role-card">
+            <h4>游客</h4>
+            <p>最关心少走弯路、即时可信、体验更好。驴迹 AI 给到实时问答、路线推荐、讲解与服务转人工。</p>
+          </article>
+          <article class="role-card">
+            <h4>景区运营总监</h4>
+            <p>最关心服务质量、节假日效率、领导可见成果。驴迹 AI 给到运营建议、日报预警、营销协同和 ROI 可视化。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel reveal" id="execution" data-section>
+        <div class="chapter-head is-selected">
+          <div class="chapter-copy">
+            <span class="meta-label">Section 03</span>
+            <h2 class="chapter-title">P1 / 执行计划</h2>
+            <p class="chapter-summary">把战略转成可执行的计划</p>
+          </div>
+          <div class="chapter-priority">
+            <span class="priority-chip">P1</span>
+            <p class="fine-print">思考：按照框架进行优先级排序</p>
+          </div>
+        </div>
+
+        <div class="epic-grid">
+          <article class="epic-card">
+            <h4>优先级 1：AI知识中枢</h4>
+            <p>统一知识、地图、数据、案例和权限。</p>
+            <div class="epic-kpi">期望成功指标：引用率 &gt; 80%，知识命中率 &gt; 70%</div>
+          </article>
+          <article class="epic-card">
+            <h4>优先级 2：数字交付员工</h4>
+            <p>缩短方案与交付准备时间。</p>
+            <div class="epic-kpi">期望成功指标：方案初稿时间下降 50%，文档复用率 &gt; 60%</div>
+          </article>
+          <article class="epic-card">
+            <h4>优先级 3：数字导游员工</h4>
+            <p>提升游客自助服务能力。</p>
+            <div class="epic-kpi">期望成功指标：自助解决率 &gt; 60%，导览使用时长提升 20%</div>
+          </article>
+          <article class="epic-card">
+            <h4>优先级 4：数字营销/运营员工</h4>
+            <p>提升内容产能与运营响应速度。</p>
+            <div class="epic-kpi">期望成功指标：内容周期缩短 50%，日报生成时间缩短 80%</div>
+          </article>
+        </div>
+
+        <section class="capability-road-ledger" aria-label="按能力划分的执行计划">
+          <div class="ledger-head">
+            <span class="meta-label">Execution Ledger</span>
+            <h3>按优先级划分的执行计划</h3>
+            <p></p>
+          </div>
+
+          <div class="capability-road-table">
+            <article class="capability-plan-row" data-priority="P0">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P0</span>
+                <h4>AI知识中枢 </h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 1-2</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>定义知识域、主数据、权限、引用、更新时间规则</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>知识中枢、数据字典、治理规范</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P0">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P0</span>
+                <h4>数字交付员工 </h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 2-3</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>打通方案生成、案例检索、FAQ、培训材料生成</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>交付助手、审核台、反馈回写</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P0">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P0</span>
+                <h4>安全与治理</h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 2-3</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>建租户隔离、敏感词、日志审计、人工审批</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>治理规则、审计日志、风险清单</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P1">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P1</span>
+                <h4>数字导游员工 </h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 4-6</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>选 1-2 景区试点问答、路线推荐、服务分流</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>游客入口、地图联动、人工转接</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P1">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P1</span>
+                <h4>数字营销员工 </h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 4-6</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>打通活动文案、渠道改写、选题建议、版本管理</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>内容工作台、模板库、复用标签</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P1">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P1</span>
+                <h4>封装上线/验证</h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 5-7</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>设计标准版/增强版/项目打包方案</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>定价策略、销售物料、案例包</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P2">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P2</span>
+                <h4>数字运营员工 </h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 7-10</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>建日报、异常预警、运营建议、调度看板</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>运营助手、日报模板、预警台</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="capability-plan-row" data-priority="P2">
+              <div class="capability-plan-head">
+                <span class="priority-chip">P2</span>
+                <h4>ROI 看板与后续策略</h4>
+                <div class="capability-plan-meta">
+                  <span>时间</span>
+                  <strong>月 9-12</strong>
+                </div>
+              </div>
+              <div class="capability-plan-detail">
+                <article class="capability-plan-block">
+                  <strong>关键动作</strong>
+                  <p>统一统计自助率、工时节省、增购率、续约率</p>
+                </article>
+                <article class="capability-plan-block">
+                  <strong>交付物</strong>
+                  <p>ROI 仪表板、续约话术、复盘机制</p>
+                </article>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel reveal" id="evidence" data-section>
+        <div class="chapter-head">
+          <div class="chapter-copy">
+            <span class="meta-label">Section 04</span>
+            <h2 class="chapter-title">P2 / ROI分析</h2>
+            <p class="chapter-summary"></p>
+          </div>
+          <div class="chapter-priority">
+            <span class="priority-chip">P2</span>
+            <p class="fine-print">证据层：基于当前战略方向的设计思路评估</p>
+          </div>
+        </div>
+
+        <section class="investment-assessment" aria-label="投资评估">
+          <div class="ledger-head">
+            <span class="meta-label">Investment Review</span>
+            <h3>投资评估</h3>
+            <p></p>
+          </div>
+
+          <div class="investment-table">
+            <article class="investment-row">
+              <div class="investment-capability">
+                <span class="investment-kicker">Capability</span>
+                <h4>文AI知识中枢</h4>
+              </div>
+              <div class="investment-cells">
+                <article class="investment-cell">
+                  <strong>收入连接</strong>
+                  <p>间接，支撑全部后续收入</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>成本结构</strong>
+                  <p>一次性平台投入中等；后续运维可控</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>ROI 判断</strong>
+                  <p>单独看 ROI 一般，但作为平台价值极高</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>战略价值</strong>
+                  <p>是所有数字员工的基础，不做则后续失真</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="investment-row">
+              <div class="investment-capability">
+                <span class="investment-kicker">Capability</span>
+                <h4>数字交付员工</h4>
+              </div>
+              <div class="investment-cells">
+                <article class="investment-cell">
+                  <strong>收入连接</strong>
+                  <p>间接，主要改善毛利和签约效率</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>成本结构</strong>
+                  <p>开发和模型调用成本较低</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>ROI 判断</strong>
+                  <p>短期 ROI 最强</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>战略价值</strong>
+                  <p>直接改善内部重复劳动，增效明显</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="investment-row">
+              <div class="investment-capability">
+                <span class="investment-kicker">Capability</span>
+                <h4>数字导游员工</h4>
+              </div>
+              <div class="investment-cells">
+                <article class="investment-cell">
+                  <strong>收入连接</strong>
+                  <p>直接和间接兼有，可带来增购、续约和品牌价值</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>成本结构</strong>
+                  <p>GIS、游客端接入和模型调用成本中等</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>ROI 判断</strong>
+                  <p>中高</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>战略价值</strong>
+                  <p>对外价值最直观，是 AI 形象入口</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="investment-row">
+              <div class="investment-capability">
+                <span class="investment-kicker">Capability</span>
+                <h4>数字营销员工</h4>
+              </div>
+              <div class="investment-cells">
+                <article class="investment-cell">
+                  <strong>收入连接</strong>
+                  <p>可作为增购模块，也可提升运营服务产能</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>成本结构</strong>
+                  <p>内容生成成本低，边际成本较优</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>ROI 判断</strong>
+                  <p>高</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>战略价值</strong>
+                  <p>最容易标准化与复制</p>
+                </article>
+              </div>
+            </article>
+
+            <article class="investment-row">
+              <div class="investment-capability">
+                <span class="investment-kicker">Capability</span>
+                <h4>数字运营员工</h4>
+              </div>
+              <div class="investment-cells">
+                <article class="investment-cell">
+                  <strong>收入连接</strong>
+                  <p>直接收入潜力高，但依赖数据质量与组织协同</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>成本结构</strong>
+                  <p>集成成本最高，交付复杂度最大</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>ROI 判断</strong>
+                  <p>中等，需试点验证</p>
+                </article>
+                <article class="investment-cell">
+                  <strong>战略价值</strong>
+                  <p>如果做成，将提升客单价与竞争壁垒</p>
+                </article>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <section class="deprioritized-board" aria-label="不建议优先投资的方向">
+          <div class="ledger-head">
+            <span class="meta-label">Do Not Prioritize</span>
+            <h3>不建议优先投资的方向</h3>
+            <p>不适合当前阶段优先投入，会稀释平台化、拉高风险，把资源拖进非核心优势区。</p>
+          </div>
+
+          <div class="deprioritized-grid">
+            <article class="deprioritized-card">
+              <strong>Direction 01</strong>
+              <h4>自研底层大模型</h4>
+              <p>资金消耗大，不是驴迹的核心优势</p>
+            </article>
+            <article class="deprioritized-card">
+              <strong>Direction 02</strong>
+              <h4>完全无人化运营</h4>
+              <p>风险和责任边界过高，不适合文旅/政务场景</p>
+            </article>
+            <article class="deprioritized-card">
+              <strong>Direction 03</strong>
+              <h4>泛办公助手</h4>
+              <p>易做但壁垒弱，不能体现驴迹的行业资产优势</p>
+            </article>
+            <article class="deprioritized-card">
+              <strong>Direction 04</strong>
+              <h4>重度定制的一客一版 AI</h4>
+              <p>短期可能成效快，长期会吞噬毛利并破坏平台化节奏</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel reveal" id="decision" data-section>
+        <div class="chapter-head">
+          <div class="chapter-copy">
+            <span class="meta-label">Section 05</span>
+            <h2 class="chapter-title">决策思考 （需要领导思考的三个条件）</h2>
+            <p class="chapter-summary">三项前置决策</p>
+          </div>
+          <div class="chapter-priority">
+            <span class="priority-chip">Thinking</span>
+            <p class="fine-print">思考：关键取舍决策</p>
+          </div>
+        </div>
+
+        <div class="thinking-board">
+          <p class="thinking-intro"></p>
+
+          <div class="thinking-table">
+            <div class="thinking-head" aria-hidden="true">
+              <span>思考决策项</span>
+              <span>理由</span>
+              <span>后果</span>
+            </div>
+
+            <article class="thinking-row">
+              <div class="thinking-cell">
+                <span class="thinking-kicker">Think 01</span>
+                <strong>标准化优先还是客户定制优先，以及谁有特批权</strong>
+              </div>
+              <div class="thinking-cell">
+                <strong>理由</strong>
+                <span>这是平台化能否成立的核心。如果按照项目制，针对不同景区销售天然会推动定制化签单（例如给某个景区做定制化AI客服），容易导致个性化严重，必须由高层领导设定边界和特殊项目审批机制。</span>
+              </div>
+              <div class="thinking-cell">
+                <strong>后果</strong>
+                <span>如果不确定边界，很快会滑向“一客一版 AI”，知识底座失去复用价值垮。</span>
+              </div>
+            </article>
+
+            <article class="thinking-row">
+              <div class="thinking-cell">
+                <span class="thinking-kicker">Think 02</span>
+                <strong>模型、部署与数据边界策略</strong>
+              </div>
+              <div class="thinking-cell">
+                <strong>理由</strong>
+                <span>文旅局、景区和内部项目知识涉及多租户、客户私域和合规边界，必须先确定是采用本地部署还是云端策略，模型是否有限制要求。</span>
+              </div>
+              <div class="thinking-cell">
+                <strong>后果</strong>
+                <span>后续每个客户都会重复争论部署方式和安全边界，售前周期变长，风险也更高。</span>
+              </div>
+            </article>
+
+            <article class="thinking-row">
+              <div class="thinking-cell">
+                <span class="thinking-kicker">Think 03</span>
+                <strong>知识治理责任制：谁拥有内容质量、更新和冲突时仲裁权</strong>
+              </div>
+              <div class="thinking-cell">
+                <strong>理由</strong>
+                <span>AI 中枢能不能长期可用，关键不在首版上线，而在谁持续维护景区知识、项目案例、问答和运营指标。必须明确维护人员、更新时间和仲裁机制。</span>
+              </div>
+              <div class="thinking-cell">
+                <strong>后果</strong>
+                <span>知识库在上线后需要持续维护，否则历史数据会存在过期（例如集团的方向改变、部门整合等），AI 回答越来越不准，前线团队会很快失去信任。</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="strategy-analysis-modal" id="strategy-analysis-modal" data-modal aria-hidden="true">
+    <div class="strategy-analysis-overlay" data-modal-overlay></div>
+    <section
+      class="strategy-analysis-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="strategy-analysis-title"
+      aria-describedby="strategy-analysis-intro"
+    >
+      <header class="strategy-analysis-topbar">
+        <div class="strategy-analysis-copy">
+          <div class="strategy-analysis-kicker">
+            <span class="priority-chip">定位分析</span>
+            <span class="strategy-analysis-mode">针对本次做垂直领域和对比做通用型助手的思考</span>
+          </div>
+          <h3 id="strategy-analysis-title"></h3>
+          <p id="strategy-analysis-intro"></p>
+        </div>
+        <button class="strategy-analysis-close" type="button" data-modal-close>
+          返回报告
+        </button>
+      </header>
+
+      <div class="strategy-analysis-scroll" data-modal-scroll>
+        <section class="analysis-summary-board" aria-label="定位分析结论摘要">
+        </section>
+
+        <section class="analysis-card-grid" aria-label="定位分析判断卡片">
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">01</span>
+              <div>
+                <span class="analysis-label">Asset Fit</span>
+                <h4>与公司现有资产匹配度</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>直接调用驴迹现有的文旅内容库、地图/GIS、景区 SaaS、案例知识和交付流程，资产复用链路清晰。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>需求虽然普遍，但和驴迹最强的文旅行业资产弱相关，容易落入红海竞争，也很难建立对外差异化。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>应优先投向资产匹配度更高的方向。</p>
+            </div>
+          </article>
+
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">02</span>
+              <div>
+                <span class="analysis-label">Revenue</span>
+                <h4>主航道收入与毛利</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>既能改善交付效率和毛利，又能做成景区客户可采购的模块，直接影响主航道收入和续约故事。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>更多是内部辅助工具，对核心业务收入帮助间接，短期很难解释为什么它应成为今年最优先的投入。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>应优先投向能直接作用主航道收入与毛利的方向。</p>
+            </div>
+          </article>
+
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">03</span>
+              <div>
+                <span class="analysis-label">Moat</span>
+                <h4>长期壁垒沉淀</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>每接一个客户、每交付一个项目，知识、流程、模板和治理规则都会继续沉淀，形成越来越强的平台护城河。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>能力大多是通用办公范式，替代品多，沉淀下来的也是通用流程，难以构成驴迹独有的长期优势。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>应优先投向可沉淀长期壁垒的方向。</p>
+            </div>
+          </article>
+
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">04</span>
+              <div>
+                <span class="analysis-label">ROI</span>
+                <h4>ROI 结构</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>一条线来自内部人效和交付毛利改善，另一条线来自景区客户的增购、试点和续约，回报路径更完整。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>价值大多集中在降本提效，缺少对外收入样板，容易让今年的 AI 投入停留在“内部优化”层面。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>今年应优先双重 ROI 路径，而不是单一降本。</p>
+            </div>
+          </article>
+
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">05</span>
+              <div>
+                <span class="analysis-label">Visibility</span>
+                <h4>客户可见价值</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>数字导游、数字交付、数字营销和数字运营都能形成客户能直接看到的体验变化，更容易转化成预算和决策支持。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>收益更多发生在内部后台，客户感知弱，即使做成了，也不一定能转成更强的市场叙事和采购理由。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>应优先做客户看得见、愿意买单的能力。</p>
+            </div>
+          </article>
+
+          <article class="analysis-focus-card">
+            <div class="analysis-card-head">
+              <span class="analysis-step">06</span>
+              <div>
+                <span class="analysis-label">Sequence</span>
+                <h4>推进顺序</h4>
+              </div>
+            </div>
+            <div class="analysis-card-columns">
+              <article class="analysis-column preferred">
+                <h5>AI 中枢知识底座 + 4 个数字员工</h5>
+                <p>先统一知识底座、权限、引用和流程编排，再把能力扩展为数字员工，组织与产品节奏更稳，也更利于治理。</p>
+              </article>
+              <article class="analysis-column alternative">
+                <h5>通用办公 AI 数字员工（如财务/行政）</h5>
+                <p>如果先做通用助手，往往会各部门各自起项目，最后形成新的信息烟囱，反而拖慢平台化建设。</p>
+              </article>
+            </div>
+            <div class="analysis-card-verdict">
+              <span class="analysis-footer-kicker">Verdict</span>
+              <p>今年应先完成统一底座建设，再扩内部通用助手。</p>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <footer class="strategy-analysis-footer">
+        <div class="analysis-footer-copy">
+          <span class="analysis-footer-kicker">Conclusion</span>
+          <p>前期不做通用办公助手理由：先把 AI 中枢和数字员工做成，再把通用助手接入同一底座，整体价值会更高。</p>
+        </div>
+        <span class="analysis-footer-pill">今年是排序，不是排除</span>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+    const navLinks = Array.from(document.querySelectorAll(".atlas-link"));
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const strategyAnalysisModal = document.querySelector("[data-modal]");
+    const strategyAnalysisOpeners = Array.from(document.querySelectorAll("[data-modal-open]"));
+    const strategyAnalysisClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
+    const strategyAnalysisOverlay = document.querySelector("[data-modal-overlay]");
+    const strategyAnalysisScroll = strategyAnalysisModal?.querySelector("[data-modal-scroll]");
+    let lastStrategyAnalysisTrigger = null;
+
+    const setActiveLink = (id) => {
+      navLinks.forEach((link) => {
+        const isActive = link.dataset.navTarget === id;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const syncActiveLinkWithViewport = () => {
+      const focusLine = Math.max(96, window.innerHeight * 0.22);
+      const candidate = sections
+        .map((section) => {
+          const rect = section.getBoundingClientRect();
+          const visibleTop = Math.max(rect.top, 0);
+          const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+          return {
+            section,
+            overlapsFocusLine: rect.top <= focusLine && rect.bottom >= focusLine,
+            distance: Math.abs(rect.top - focusLine),
+            visibleHeight,
+          };
+        })
+        .filter(({ visibleHeight }) => visibleHeight > 0)
+        .sort((a, b) => {
+          if (a.overlapsFocusLine !== b.overlapsFocusLine) {
+            return a.overlapsFocusLine ? -1 : 1;
+          }
+
+          if (b.visibleHeight !== a.visibleHeight) {
+            return b.visibleHeight - a.visibleHeight;
+          }
+
+          return a.distance - b.distance;
+        })[0];
+
+      if (candidate) {
+        setActiveLink(candidate.section.id);
+      }
+    };
+
+    const getStrategyAnalysisFocusableElements = () => {
+      if (!strategyAnalysisModal) {
+        return [];
+      }
+
+      const focusableSelectors = [
+        "a[href]",
+        "button:not([disabled])",
+        "textarea:not([disabled])",
+        "input:not([disabled])",
+        "select:not([disabled])",
+        "[tabindex]:not([tabindex='-1'])"
+      ].join(", ");
+
+      return Array.from(strategyAnalysisModal.querySelectorAll(focusableSelectors)).filter((element) => {
+        if (!(element instanceof HTMLElement)) {
+          return false;
+        }
+
+        if (element.getAttribute("aria-hidden") === "true") {
+          return false;
+        }
+
+        return !element.hasAttribute("disabled");
+      });
+    };
+
+    const openStrategyAnalysisModal = (trigger) => {
+      if (!strategyAnalysisModal) {
+        return;
+      }
+
+      lastStrategyAnalysisTrigger = trigger ?? document.activeElement;
+      document.documentElement.classList.add("modal-open");
+      document.body.classList.add("modal-open");
+      strategyAnalysisModal.classList.add("is-open");
+      strategyAnalysisModal.setAttribute("aria-hidden", "false");
+      if (strategyAnalysisScroll) {
+        strategyAnalysisScroll.scrollTop = 0;
+      }
+
+      const focusTarget = strategyAnalysisModal.querySelector("[data-modal-close]");
+      requestAnimationFrame(() => {
+        if (!(focusTarget instanceof HTMLElement)) {
+          return;
+        }
+
+        try {
+          focusTarget.focus({ preventScroll: true });
+        } catch (error) {
+          focusTarget.focus();
+        }
+      });
+    };
+
+    const closeStrategyAnalysisModal = () => {
+      if (!strategyAnalysisModal) {
+        return;
+      }
+
+      document.documentElement.classList.remove("modal-open");
+      document.body.classList.remove("modal-open");
+      strategyAnalysisModal.classList.remove("is-open");
+      strategyAnalysisModal.setAttribute("aria-hidden", "true");
+      lastStrategyAnalysisTrigger?.focus?.();
+    };
+
+    strategyAnalysisOpeners.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        openStrategyAnalysisModal(trigger);
+      });
+    });
+
+    strategyAnalysisClosers.forEach((trigger) => {
+      trigger.addEventListener("click", closeStrategyAnalysisModal);
+    });
+
+    strategyAnalysisOverlay?.addEventListener("click", closeStrategyAnalysisModal);
+
+    document.addEventListener("keydown", (event) => {
+      if (!strategyAnalysisModal?.classList.contains("is-open")) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeStrategyAnalysisModal();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusableElements = getStrategyAnalysisFocusableElements();
+        if (focusableElements.length === 0) {
+          event.preventDefault();
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!focusableElements.includes(document.activeElement)) {
+          event.preventDefault();
+          firstElement.focus();
+          return;
+        }
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    });
+
+    if (!prefersReducedMotion) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      }, { threshold: 0.18 });
+
+      document.querySelectorAll(".reveal").forEach((node) => {
+        revealObserver.observe(node);
+      });
+    } else {
+      document.querySelectorAll(".reveal").forEach((node) => node.classList.add("is-visible"));
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        setActiveLink(link.dataset.navTarget);
+        requestAnimationFrame(syncActiveLinkWithViewport);
+      });
+    });
+
+    window.addEventListener("hashchange", syncActiveLinkWithViewport);
+    window.addEventListener("resize", syncActiveLinkWithViewport);
+
+    const sectionObserver = new IntersectionObserver(() => {
+      syncActiveLinkWithViewport();
+    }, {
+      threshold: [0.2, 0.4, 0.6],
+      rootMargin: "-10% 0px -35% 0px"
+    });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+    if (sections.length > 0) {
+      syncActiveLinkWithViewport();
+    }
+  </script>
+</body>
+</html>

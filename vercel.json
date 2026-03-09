@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/lvji-director-report.html"
+    },
+    {
+      "source": "/report",
+      "destination": "/lvji-director-report.html"
+    }
+  ]
+}
