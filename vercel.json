@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/lvji-director-report.html"
+      "destination": "/lvji-director-report"
     },
     {
       "source": "/report",
-      "destination": "/lvji-director-report.html"
+      "destination": "/lvji-director-report"
     }
   ]
 }
